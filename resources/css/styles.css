@@ -1,0 +1,93 @@
+.jumbotron-with-logo {
+    background-image: url("{{ asset('Images/WOrk wise.png') }}"); /* Correct path */
+    background-size: cover; /* Cover the entire area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    height: 400px; /* Set a specific height for the jumbotron */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    position: relative; /* Positioning context for overlay */
+}
+
+.jumbotron-with-logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    z-index: 0; /* Position behind the text */
+}
+
+.jumbotron-with-logo a {
+    position: relative; /* Make sure the button is positioned relative to the jumbotron */
+    z-index: 1; /* Ensure button is above the background */
+    color: #fff; /* Button text color for contrast */
+    text-decoration: none; /* No underline on the button */
+    padding: 10px 20px; /* Add some padding for better appearance */
+    border-radius: 5px; /* Rounded corners for the button */
+    font-size: 20px; /* Button font size */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.jumbotron-with-logo a:hover {
+    background-color: rgba(255, 255, 255, 0.7); /* Change button color on hover */
+}
+@media (max-width: 576px) {
+    .jumbotron-with-logo {
+        padding: 80px 10px; /* Adjust padding for smaller screens */
+    }
+
+    .jumbotron-with-logo h2 {
+        font-size: 24px; /* Reduce font size on small screens */
+    }
+
+    .jumbotron-with-logo p {
+        font-size: 16px; /* Reduce font size on small screens */
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #4CAF50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+.container {
+    padding: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #ddd;
+}
+
+
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    nav ul li {
+        display: block;
+        margin: 5px 0;
+    }
+}
