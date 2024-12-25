@@ -14,6 +14,7 @@ Route::get('/', [JobPortalController::class, 'index'])->name('home');
 // Job Listings Route (Accessible by everyone)
 Route::get('/job-listings', [JobPortalController::class, 'jobListings'])->name('job-listings');
 
+
 // About Us Route (Accessible by everyone)
 Route::get('/about', [JobPortalController::class, 'about'])->name('about');
 
@@ -48,6 +49,9 @@ Route::post('/jobs/{job}/apply', [JobApplicationController::class, 'apply'])->na
 Route::get('/apply', [JobApplicationController::class, 'showForm'])->name('apply.form');
 Route::post('/apply', [JobApplicationController::class, 'submitApplication'])->name('apply.submit');
 require __DIR__.'/auth.php';
+
+Route::get('/profile/create', [ProfileController::class, 'create'])->name('profile.create');
+Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
 
 
 Route::middleware('auth')->group(function () {
