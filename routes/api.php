@@ -1,17 +1,19 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\CategoryController;
-use App\Http\Controllers\Api\JobApplicationController;
-use App\Http\Controllers\Api\JobController;
-use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\JobApplicationController;
+use App\Http\Controllers\API\JobController;
+use App\Http\Controllers\API\ProfileController;
 
-// Authentication Routes
-Route::prefix('auth')->group(function () {
-    Route::post('login', [AuthController::class, 'login'])->name('auth.login');
-    Route::post('register', [AuthController::class, 'register'])->name('auth.register');
-    Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
-});
+// Public route for sign up
+Route::post('/signup', [AuthController::class, 'signup']);
+
+// Public route for login
+Route::post('/login', [AuthController::class, 'login']);
+
+// Public route for logout
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 // Category Routes
 Route::prefix('categories')->group(function () {

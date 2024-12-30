@@ -115,7 +115,7 @@ return [
     | allow maintenance mode to be controlled across multiple machines.
     |
     | Supported drivers: "file", "cache"
-    |
+    
     */
 
     'maintenance' => [

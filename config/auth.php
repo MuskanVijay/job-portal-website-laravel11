@@ -1,3 +1,4 @@
+
 <?php
 
 return [
@@ -40,6 +41,7 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
     ],
 
     /*
