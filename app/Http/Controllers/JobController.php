@@ -7,32 +7,25 @@ use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-    // Index method to list all jobs with search functionality
-    // In JobController.php
-    public function index(Request $request)
+    public function search(Request $request)
+{
+    $query = $request->get('query');
+    if ($query) {
+        // Search jobs by title or location
+        $jobs = Job::where('title', 'LIKE', '%' . $query . '%')
+                   ->orWhere('location', 'LIKE', '%' . $query . '%')
+                   ->get();
+                  ;
+    return view('jobs.partials.search_results', compact('jobs'));
+}
+}
+
+    public function index()
     {
-        $query = $request->input('search');
-        $jobs = Job::query();
-    
-        // Check if there is a search query and filter jobs accordingly
-        if ($query) {
-            $jobs = $jobs->where('title', 'like', '%' . $query . '%')
-                         ->orWhere('location', 'like', '%' . $query . '%');
-        }
-    
-        // Paginate or fetch all results
-        $jobs = $jobs->paginate(5);
-    
-        return view('jobs.index', compact('jobs', 'query'));
+        $jobs = Job::all(); // Retrieves all jobs
+        return view('jobs.index', compact('jobs'));
     }
     
-    // Method to show the create job form
-    public function create()
-    {
-        // Get all categories to display in the dropdown
-        $categories = Category::all();
-        return view('jobs.create', compact('categories'));
-    }
 
     // Method to store a new job
     public function store(Request $request)
@@ -95,5 +88,10 @@ class JobController extends Controller
         $jobs = Job::all();
     
         return view('jobs.show', compact('job', 'jobs'));
+    }
+    public function create()
+    {
+        $categories = Category::all(); // Fetch all categories
+        return view('jobs.create', compact('categories'));
     }
 }

@@ -16,15 +16,15 @@ class CategoryController extends Controller
             $categories = $categories->where('name', 'like', '%' . $search . '%');
         }
         
-        $categories = $categories->paginate(5);  // Paginates the categories
-        
+        $categories = $categories->get();  // Use get() instead of paginate()
+
         if ($request->ajax()) {
             return view('categories.partials.category_table', compact('categories'))->render();
         }
         
         return view('categories.index', compact('categories'));  // Passing categories to the view
     }
-    
+
     public function create()
     {
         return view('categories.create');

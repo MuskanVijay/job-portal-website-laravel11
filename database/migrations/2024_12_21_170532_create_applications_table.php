@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('cv_path');
             $table->string('cover_letter_path');
             $table->timestamps();
+            
         });
     }
 

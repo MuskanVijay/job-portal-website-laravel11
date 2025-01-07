@@ -1,30 +1,22 @@
-<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#applyModal">
-    Apply Now
-</button>
+@extends('layouts.app')
 
-<div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="applyModalLabel">Upload CV and Cover Letter</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="{{ route('jobApplications.apply', $job->id) }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="cv" class="form-label">Upload CV</label>
-                        <input type="file" class="form-control" id="cv" name="cv" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cover_letter" class="form-label">Upload Cover Letter</label>
-                        <input type="file" class="form-control" id="cover_letter" name="cover_letter">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
+@section('content')
+<div class="container">
+    <h2>Create Your Profile</h2>
+
+    <form method="POST" action="{{ route('profile.store') }}" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+            <label for="cv">Upload Your CV</label>
+            <input type="file" name="cv" id="cv" class="form-control" required>
         </div>
-    </div>
+
+        <div class="form-group">
+            <label for="cover_letter">Upload Your Cover Letter (optional)</label>
+            <input type="file" name="cover_letter" id="cover_letter" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Profile</button>
+    </form>
 </div>
+@endsection

@@ -13,11 +13,20 @@
         <p><strong>Salary:</strong> ${{ number_format($job->salary, 2) }}</p>
         <p><strong>Description:</strong> {{ $job->description }}</p>
         <p><strong>Category:</strong> {{ $job->category->name }}</p>
-        <!-- Apply Now Button -->
+
+        <!-- Apply Now Form -->
         <div class="text-center mt-4">
             <form action="{{ route('jobApplications.apply', $job->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <button type="submit" class="btn btn-success btn-lg">Apply Now</button>
+                <div class="form-group">
+                    <label for="cv">Upload CV (PDF/DOC):</label>
+                    <input type="file" name="cv" id="cv" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="cover_letter">Upload Cover Letter (PDF/DOC):</label>
+                    <input type="file" name="cover_letter" id="cover_letter" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-success btn-lg mt-3">Apply Now</button>
             </form>
         </div>
 
@@ -76,5 +85,4 @@
         color: inherit; /* Use the same color as parent */
     }
 </style>
-
 @endsection

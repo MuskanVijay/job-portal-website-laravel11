@@ -16,7 +16,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 // Category Routes
-Route::prefix('categories')->group(function () {
+Route::middleware('auth:sanctum')->name('category.')->prefix('category')->group(function() {
     Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
     Route::post('/', [CategoryController::class, 'store'])->name('categories.store');
     Route::get('/{id}', [CategoryController::class, 'show'])->name('categories.show');
@@ -25,7 +25,7 @@ Route::prefix('categories')->group(function () {
 });
 
 // Job Routes
-Route::prefix('jobs')->group(function () {
+Route::middleware('auth:sanctum')->name('jobs.')->prefix('jobs')->group(function() {
     Route::get('/', [JobController::class, 'index'])->name('jobs.index');
     Route::post('/', [JobController::class, 'store'])->name('jobs.store');
     Route::get('/{id}', [JobController::class, 'show'])->name('jobs.show');

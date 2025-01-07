@@ -33,10 +33,6 @@
             @endforeach
         </tbody>
     </table>
-
-    <!-- Pagination links -->
-    <div>
-        {{ $categories->links() }}
-    </div>
 </div>
+
 @endsection
